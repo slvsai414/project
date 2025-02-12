@@ -21,11 +21,7 @@ app.use(cookieParser());
 
 // CORS Configuration
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? "https://cms-frontend-0rrx.onrender.com"  // production URL
-    : "http://localhost:5173",  // development URL
-
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: "https://cms-frontend-0rrx.onrender.com"
   credentials: true,
   allowedHeaders: ["Content-Type"]
 }));
