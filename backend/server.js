@@ -20,14 +20,17 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CORS Configuration
-app.use(
-  cors({
-    origin: "https://your-deployed-frontend-url.com"
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-    allowedHeaders: ["Content-Type"],
-  })
-);
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? "https://cms-frontend-0rrx.onrender.com"  // production URL
+    : "http://localhost:5173",  // development URL
+
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+  allowedHeaders: ["Content-Type"]
+}));
+console.log(process.env.NODE_ENV);  // This should output "production" or "development"
+
 
 // Connect to MongoDB
 mongoose
