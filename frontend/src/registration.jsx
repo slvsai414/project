@@ -33,7 +33,7 @@ function Registration() {
 
   try {
     // Send POST request to the backend
-    const response = await axios.post('http://localhost:3000/registration',registration_data)
+    const response = await axios.post('https://cms-yikc.onrender.com/registration',registration_data)
     console.log(response.data);
 
     if (response.status === 201){
