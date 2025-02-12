@@ -15,7 +15,7 @@ const GetStudentData = () => {
         setLoading(true)
         setError(null);
         setStudentData(null);
-        const response = await axios.get(`http://localhost:3000/student/${rollNumber}`);
+        const response = await axios.get(`https://cms-frontend-0rrx.onrender.com/${rollNumber}`);
   
         if (response.status !== 200) {
           throw new Error('Student not found or server error');
