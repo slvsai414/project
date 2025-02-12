@@ -16,7 +16,9 @@ app.use(express.json());
 dotenv.config();
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: process.env.NODE_ENV === 'production' 
+    ? "https://cms-frontend-0rrx.onrender.com"
+    :"http://localhost:5173",
 
   methods: ["GET", "POST", "PUT", "DELETE"],
 
