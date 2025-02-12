@@ -13,7 +13,7 @@ const UpdateStudent = () => {
         e.preventDefault();
         setLoading(true);
 
-            const adminData = await axios.get("http://localhost:3000/profile",{withCredentials:true})
+            const adminData = await axios.get("https://cms-frontend-0rrx.onrender.com/",{withCredentials:true})
             //console.log(adminData)
 
 
