@@ -32,7 +32,7 @@ export default function Settings() {
 
         try{
           setLoading(true);
-          const result = await axios.get("http://localhost:3000/profile",{
+          const result = await axios.get("https://cms-yikc.onrender.com/profile",{
             withCredentials: true
           });
 
