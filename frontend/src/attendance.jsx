@@ -11,7 +11,7 @@ const UserAttendance = () => {
     // Fetch Logged-in User
     useEffect(() => {
         setLoading(true)
-        axios.get("http://localhost:3000/attendance", { withCredentials: true })
+        axios.get("https://cms-yikc.onrender.com/attendance", { withCredentials: true })
             .then(response => {
                 setUser(response.data);
                 setAttendance("Absent"); // Set attendance to "Absent" by default
