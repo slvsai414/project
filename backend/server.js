@@ -3,130 +3,126 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import cors from "cors";
-import { college_registration } from "./models/users.js";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
-import Attendance from "./models/attendance_schema.js";
-import ExamResults from "./models/examResults.js";
 import multer from "multer";
 
+import { college_registration } from "./models/users.js";
+import Attendance from "./models/attendance_schema.js";
+import ExamResults from "./models/examResults.js";
 
-const app = express();
-app.use(express.json());
 dotenv.config();
 
-app.use(cors({
-  origin: "https://cms-frontend-0rrx.onrender.com"
+const app = express();
+const PORT = process.env.PORT || 3000;  // Use environment port or fallback to 3000
 
-  methods: ["GET", "POST", "PUT", "DELETE"],
+app.use(express.json());
+app.use(cookieParser());
 
-  credentials: true,
+// CORS Configuration
+app.use(
+  cors({
+    origin: "https://your-deployed-frontend-url.com"
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+    allowedHeaders: ["Content-Type"],
+  })
+);
 
-  allowedHeaders: ["Content-Type"]
-}));
+// Connect to MongoDB
+mongoose
+  .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error("MongoDB Connection Error:", err));
 
+// Middleware for Token Verification
+const verifyToken = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).json("Unauthorized: No Token Provided");
+  }
+  try {
+    const isVerify = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = isVerify;
+    next();
+  } catch (error) {
+    return res.status(403).json("Invalid Token or Expired");
+  }
+};
 
-app.use(cookieParser())
-
-
-
-const verifyToken = (req,res,next) =>{
-    const token = req.cookies.token;
-    if(!token){
-        return res.json("The token is not available")
-    }
-    try{
-      const isVerify = jwt.verify(token,"we-go-jim");
-      req.user = isVerify;
-      next();
-
-    }catch(error){
-      return res.status(403).json("Invalid Token or Token Expired");
-    }
-
-    };
-
-
-
-mongoose.connect(process.env.MONGO_URL)
-.then(()=>{
-  console.log("MongoDB is Connected.")
-})
-.catch(()=>{
-  console.log("MongoDB Connection Failure.")
+// Home Route
+app.get("/", (req, res) => {
+  res.send("Server is up and running.");
 });
 
+// Registration Route
+app.post("/registration", async (req, res) => {
+  try {
+    const { name, email, rollNumber, password, confirmPassword } = req.body;
+    if (!email || !name || !rollNumber || !password || !confirmPassword) {
+      return res.status(400).json("All fields are required!");
+    }
+    if (!email.includes("@")) {
+      return res.status(400).json("Enter a valid email");
+    }
+    if (password.length < 6) {
+      return res.status(400).json("Password must be at least 6 characters");
+    }
 
+    const existingUser = await college_registration.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already registered" });
+    }
 
+    const existingRollNumber = await college_registration.findOne({ rollNumber });
+    if (existingRollNumber) {
+      return res.status(400).json({ message: "Roll number already registered" });
+    }
 
-app.get("/",(req,res) =>{
-    res.send("Server is up. ");
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new college_registration({
+      name,
+      email,
+      rollNumber,
+      password: hashedPassword,
+    });
+
+    await newUser.save();
+    res.status(201).json({ message: "Registered Successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json("Internal Server Error");
+  }
 });
 
+// Login Route
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  const checkUser = await college_registration.findOne({ email });
 
-//Register Rotue
-app.post('/registration', async(req,res) =>{
-  try{
-    //console.log(req.body)
-  const {name, email, rollNumber, password, confirmPassword} = req.body
-
-  if(!email || !name || !rollNumber || !password || !confirmPassword){
-    return res.status(400).json("All fields are required!")
-  }
-  if(!email.includes("@")){
-    return res.status(400).json("Enter the valid email")
-  }
-  if (password.length<5){
-    return res.status(400).json("Password must be 6 letters")
+  if (!checkUser) {
+    return res.status(400).json("Email is not registered");
   }
 
-  const Existinguser = await college_registration.findOne({email});
-  if (Existinguser){
-    return res.status(400).json({ message: "Email already registered" });
+  const isMatch = await bcrypt.compare(password, checkUser.password);
+  if (!isMatch) {
+    return res.status(400).json("Wrong Password");
   }
 
-  const existingRollnumber = await college_registration.findOne({rollNumber});
-  if (existingRollnumber){
-    return res.status(400).json({message:"Roll number is alredy registered"});
-  }
+  const token = jwt.sign({ email: checkUser.email }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
-  const HashedPassword = await bcrypt.hash(password,10);
-
-  const Newuser = new college_registration({
-    name,
-    email,
-    rollNumber,
-    password: HashedPassword,
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "Strict",
+    expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
   });
-  await Newuser.save();
-  res.status(201).json({ message: "Registered Successfully" });
 
-  }catch(error){
-    console.log(error);
-  }
+  res.json({ status: "Success", message: `Welcome, ${checkUser.name}!` });
 });
 
-//Login Route
-app.post('/login', async(req,res) =>{
-  const {email,password} = req.body
-  const checkUser = await college_registration.findOne({email:email})
-  
-    if(checkUser){
-      const isMatch = await bcrypt.compare(password,checkUser.password);
 
-      if (isMatch){
-        const token = jwt.sign({email:checkUser.email},"we-go-jim",{expiresIn:"1d"});
-        res.cookie("token",token,{httpOnly:true, secure:true, sameSite:"Strict", expires: new Date(Date.now() + 24 * 60 * 60 * 1000)})
-        res.json({ status:"Success", message:`Welcome, ${checkUser.name}!`})
-      }else{
-        res.json("Wrong Password")
-      }
 
-    }else{
-      res.json("Email is not registered")
-    }
-  
-});
 
 
 //protected routes
@@ -361,10 +357,6 @@ app.post("/upload-results", upload.single("file"), async (req, res) => {
     res.status(500).json({ message: "Error uploading results." });
   }
 });
-
-
-
-
 
 
 
