@@ -27,7 +27,7 @@ function Navbar(){
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="w-6 h-6 rounded">
-              <img src="./src/assets/learn-svgrepo-com.svg"
+              <img src=""
               alt="Logo"
               />
             </div>
@@ -53,7 +53,7 @@ function Navbar(){
           <div className="w-8 h-8 rounded-full bg-gray-400 overflow-hidden">
             <Link to = '/profile'>
             <img 
-              src="/api/placeholder/32/32" 
+              src="" 
               alt="Profile"
               className="w-full h-full object-cover"
             />
