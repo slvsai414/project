@@ -16,7 +16,9 @@ app.use(express.json());
 dotenv.config();
 
 app.use(cors({
-  origin: ["https://cms-yikc.onrender.com"]
+origin: process.env.NODE_ENV === 'production' 
+    ? "https://your-deployed-frontend-url.com"  // Replace with your deployed frontend URL
+    : "http://localhost:5173",   // Localhost for development
 
   methods: "GET", "POST", "PUT", "DELETE",
 
