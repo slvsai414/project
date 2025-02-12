@@ -16,7 +16,7 @@ function Dash(){
             
             try{
                 setLoading(true)
-                const result = await axios.get("http://localhost:3000/dashboard");
+                const result = await axios.get("https://cms-frontend-0rrx.onrender.com/dashboard");
                 //console.log(result)
                 if(result.data !== "Success"){
                     navigate("/login")
