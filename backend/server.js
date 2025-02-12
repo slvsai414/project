@@ -18,7 +18,7 @@ dotenv.config();
 app.use(cors({
   origin: ["https://cms-yikc.onrender.com"]
 
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: "GET", "POST", "PUT", "DELETE",
 
   credentials: true,
 
