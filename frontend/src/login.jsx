@@ -20,7 +20,7 @@ function Login() {
 
 
         setLoading(true);
-        const result = await axios.post('http://localhost:3000/login',{email,password},{withCredentials:true});
+        const result = await axios.post('https://cms-frontend-0rrx.onrender.com//login',{email,password},{withCredentials:true});
         //console.log(result);
         if (result.data.status === "Success"){
           toast(result.data.message)
