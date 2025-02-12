@@ -16,10 +16,13 @@ app.use(express.json());
 dotenv.config();
 
 app.use(cors({
-  origin: "https://cms-frontend-0rrx.onrender.com", // Your frontend domain
+  origin: "http://localhost:5173",
+
   methods: ["GET", "POST", "PUT", "DELETE"],
+
   credentials: true,
-  allowedHeaders: ["Content-Type"],
+
+  allowedHeaders: ["Content-Type"]
 }));
 
 
@@ -133,7 +136,7 @@ app.post('/login', async(req,res) =>{
 
 
 app.get('/dashboard',verifyToken,async(req,res) =>{
-  return res.json(message:"Success");
+  return res.json("Success");
 
 })
 
