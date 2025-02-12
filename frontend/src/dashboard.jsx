@@ -18,7 +18,7 @@ function Dash(){
                 setLoading(true)
                 const result = await axios.get("https://cms-yikc.onrender.com/dashboard");
                 console.log(result)
-                if(result.data.status !== "Success"){
+                if(result.data !== "Success"){
                     navigate("/login")
                 }
             }catch(err){
