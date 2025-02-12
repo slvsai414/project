@@ -8,7 +8,7 @@ import axios from "axios";
     const handleLogout = async() => {
       try{
   
-        await axios.post("http://localhost:3000/logout",{},{withCredentials:true});
+        await axios.post("https://cms-yikc.onrender.com/logout",{},{withCredentials:true});
   
   
         navigate("/");
