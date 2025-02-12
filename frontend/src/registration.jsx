@@ -59,7 +59,7 @@ function Registration() {
           <div className="sm:mx-auto sm:w-full sm:max-w-full">
             <img
               alt="Your Company"
-              src="./src/assets/learn-svgrepo-com.svg"
+              src=""
               className="mx-auto h-10 w-auto"
             />
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
