@@ -17,7 +17,7 @@ dotenv.config();
 
 app.use(cors({
 origin: process.env.NODE_ENV === 'production' 
-    ? "https://your-deployed-frontend-url.com"  // Replace with your deployed frontend URL
+    ? "https://cms-frontend-0rrx.onrender.com"  // Replace with your deployed frontend URL
     : "http://localhost:5173",   // Localhost for development
 
   methods: "GET", "POST", "PUT", "DELETE",
