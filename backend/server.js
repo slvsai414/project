@@ -45,7 +45,7 @@ const verifyToken = (req, res, next) => {
     return res.status(401).json("Unauthorized: No Token Provided");
   }
   try {
-    const isVerify = jwt.verify(token, process.env.JWT_SECRET);
+    const isVerify = jwt.verify(token, "we-go-jim");
     req.user = isVerify;
     next();
   } catch (error) {
@@ -112,7 +112,7 @@ app.post("/login", async (req, res) => {
     return res.status(400).json("Wrong Password");
   }
 
-  const token = jwt.sign({ email: checkUser.email }, process.env.JWT_SECRET, { expiresIn: "1d" });
+  const token = jwt.sign({ email: checkUser.email }, "we-go-jim", { expiresIn: "1d" });
 
   res.cookie("token", token, {
     httpOnly: true,
