@@ -133,7 +133,7 @@ app.post('/login', async(req,res) =>{
 
 
 app.get('/dashboard',verifyToken,async(req,res) =>{
-  return res.json("Success");
+  return res.json(message:"Success");
 
 })
 
