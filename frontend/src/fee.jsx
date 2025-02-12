@@ -16,7 +16,7 @@ function Financial() {
     const checkAuth = async () => {
       try {
         setLoading(true);
-        const result = await axios.get("http://localhost:3000/fee", {
+        const result = await axios.get("https://cms-yikc.onrender.com/fee", {
           withCredentials: true
         });
         // console.log(result.data);
