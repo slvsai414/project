@@ -20,8 +20,6 @@ origin: process.env.NODE_ENV === 'production'
     ? "https://cms-frontend-0rrx.onrender.com"  // Replace with your deployed frontend URL
     : "http://localhost:5173",   // Localhost for development
 
-  methods: "GET", "POST", "PUT", "DELETE",
-
   credentials: true,
 
   allowedHeaders: ["Content-Type"]
