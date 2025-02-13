@@ -146,9 +146,9 @@ app.get('/dashboard',verifyToken,async(req,res) =>{
 })
 
 
-//to get the acadamic deta
+//to get the academic deta
 
-app.get('/acadamic-info', verifyToken, async(req, res) =>{
+app.get('/academic-info', verifyToken, async(req, res) =>{
   return res.json("Success")
 });
 
