@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import cors from "cors";
+import path from "path";
 import { college_registration } from "./models/users.js";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
@@ -11,10 +12,18 @@ import ExamResults from "./models/examResults.js";
 import multer from "multer";
 
 
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+
+
 const app = express();
 app.use(express.json());
 dotenv.config();
 app.use(cookieParser())
+app.use(express.static("dist"));
 
 const PORT = process.env.PORT || 3000
 
@@ -351,6 +360,7 @@ app.post("/logout", (req, res) => {
   res.clearCookie("token", { path: "/", httpOnly: true,sameSite: "None", secure:true });
   return res.status(200).json({ message: "Logged out successfully" });
 });
+
 
 
 
