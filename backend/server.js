@@ -21,10 +21,10 @@ app.use(cookieParser());
 
 // CORS Configuration
 app.use(cors({
-  origin: ["https://cms-frontend-0rrx.onrender.com/"]
-  methods:["PUT","POST","GET","DELETE"]
+  origin: ["https://cms-frontend-0rrx.onrender.com/"],
+  methods:["PUT","POST","GET","DELETE"],
   credentials: true,
-  allowedHeaders: ["Content-Type"]
+  allowedHeaders: ["Content-Type"],
 }));
 console.log(process.env.NODE_ENV);  // This should output "production" or "development"
 
