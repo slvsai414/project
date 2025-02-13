@@ -31,7 +31,7 @@ console.log(process.env.NODE_ENV);  // This should output "production" or "devel
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect("mongodb+srv://Vc0105:Vc0105@cluster0.zmvde.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.error("MongoDB Connection Error:", err));
 
