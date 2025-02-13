@@ -99,6 +99,7 @@ app.post("/registration", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const checkUser = await college_registration.findOne({ email });
+  console.log(checkUser)
 
   if (!checkUser) {
     return res.status(400).json("Email is not registered");
@@ -110,6 +111,7 @@ app.post("/login", async (req, res) => {
   }
 
   const token = jwt.sign({ email: checkUser.email }, "we-go-jim", { expiresIn: "1d" });
+  console.log(token)
 
   res.cookie("token", token, {
     httpOnly: true,
