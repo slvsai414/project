@@ -16,6 +16,8 @@ app.use(express.json());
 dotenv.config();
 app.use(cookieParser())
 
+const PORT = process.env.PORT || 3000
+
 app.use(cors({
   origin: "https://cms-frontend-0rrx.onrender.com",
 
@@ -341,6 +343,6 @@ app.post("/logout", (req, res) => {
 
 
 
-app.listen(3000, () =>{
+app.listen(PORT, () =>{
     console.log("Server is running on port 3000.");
 });
