@@ -14,7 +14,7 @@ import ExamResults from "./models/examResults.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;  // Use environment port or fallback to 3000
+const PORT = 3000;  // Use environment port or fallback to 3000
 
 app.use(express.json());
 app.use(cookieParser());
