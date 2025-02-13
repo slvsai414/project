@@ -17,7 +17,7 @@ dotenv.config();
 app.use(cookieParser())
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://cms-frontend-0rrx.onrender.com/",
 
   methods: ["GET", "POST", "PUT", "DELETE"],
 
@@ -118,7 +118,7 @@ app.post('/login', async(req,res) =>{
 
       if (isMatch){
         const token = jwt.sign({email:checkUser.email},"we-go-jim",{expiresIn:"1d"});
-        res.cookie("token",token,{httpOnly:true, secure:false, sameSite:"Strict", expires: new Date(Date.now() + 24 * 60 * 60 * 1000)})
+        res.cookie("token",token,{httpOnly:true, secure:true, sameSite:"None", expires: new Date(Date.now() + 24 * 60 * 60 * 1000)})
         res.json({ status:"Success", message:`Welcome, ${checkUser.name}!`})
       }else{
         res.json("Wrong Password")
