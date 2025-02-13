@@ -13,8 +13,8 @@ const UpdateStudent = () => {
         e.preventDefault();
         setLoading(true);
 
-            const adminData = await axios.get("https://cms-yikc.onrender.com/",{withCredentials:true})
-            //console.log(adminData)
+            const adminData = await axios.get("https://cms-yikc.onrender.com/profile",{withCredentials:true})
+            console.log(adminData)
 
 
             
