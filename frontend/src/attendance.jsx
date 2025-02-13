@@ -35,7 +35,7 @@ const UserAttendance = () => {
         })
 
         try {
-            await axios.post("http://localhost:3000/mark-attendance", {
+            await axios.post("https://cms-yikc.onrender.com/mark-attendance", {
                 userId: user._id,
                 rollNumber: user.rollNumber,
                 status: attendance
