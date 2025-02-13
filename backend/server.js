@@ -31,7 +31,7 @@ console.log(process.env.NODE_ENV);  // This should output "production" or "devel
 
 // Connect to MongoDB
 mongoose
-  .connect("mongodb+srv://Vc0105:Vc0105@cluster0.zmvde.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.error("MongoDB Connection Error:", err));
 
@@ -43,7 +43,7 @@ const verifyToken = (req, res, next) => {
     return res.status(401).json("Unauthorized: No Token Provided");
   }
   try {
-    const isVerify = jwt.verify(token, "we-go-jim");
+    const isVerify = jwt.verify(token, process.env.JWT_SECRET);
     console.log("verify: ",isVerify)
     req.user = isVerify;
     next();
@@ -112,7 +112,7 @@ app.post("/login", async (req, res) => {
     return res.status(400).json("Wrong Password");
   }
 
-  const token = jwt.sign({ email: checkUser.email }, "we-go-jim", { expiresIn: "1d" });
+  const token = jwt.sign({ email: checkUser.email }, process.env.JWT_SECRET, { expiresIn: "1d" });
   console.log(token)
 
   res.cookie("token", token, {
