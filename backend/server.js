@@ -372,7 +372,7 @@ app.post("/upload-results", upload.single("file"), async (req, res) => {
 
 
 app.post("/logout", (req, res) => {
-  res.clearCookie("token", { path: "/", httpOnly: true, sameSite: "strict" });
+  res.clearCookie("token", { path: "/", httpOnly: true,sameSite: "None", secure:true });
   return res.status(200).json({ message: "Logged out successfully" });
 });
 
