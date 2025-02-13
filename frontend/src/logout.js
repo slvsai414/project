@@ -8,7 +8,7 @@ import axios from "axios";
     const handleLogout = async() => {
       try{
   
-        const response = await axios.post("http://localhost:3000/logout",{},{
+        const response = await axios.post("https://cms-yikc.onrender.com/logout",{},{
         withCredentials:true});
 
         console.log("Logout response:", response);
