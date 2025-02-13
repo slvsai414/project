@@ -16,7 +16,7 @@ function Registration() {
     e.preventDefault();
 
   if (password !== confirmPassword){
-    setConfirmPassword("Password dont match")
+    set("Password dont match")
     toast.error("Password not match",{
       position:"top-left"
     });
