@@ -190,7 +190,7 @@ app.post("/mark-attendance",verifyToken,async(req,res)=>{
 
   const today = new Date();
   const startOfDay = new Date(today.setHours(9,0,0,0));
-  const endOfDay = new Date(today.setHours(24,0,0,0));
+  const endOfDay = new Date(today.setHours(17,0,0,0));
 
 
   try {
