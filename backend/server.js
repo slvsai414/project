@@ -140,7 +140,11 @@ app.post('/login', async(req,res) =>{
 
 
 app.get('/dashboard',verifyToken,async(req,res) =>{
-  console.log("Dashboard route hit")
+  console.log("Received Cookies:", req.cookies);
+  if (!req.cookies.token) {
+    return res.status(401).json("The token is not available");
+  }
+  //console.log("Dashboard route hit")
   return res.json("Success");
 
 })
