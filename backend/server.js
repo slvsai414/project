@@ -134,7 +134,7 @@ app.post('/login', async(req,res) =>{
         res.cookie("token",token,{httpOnly:true,
                                   secure:true,
                                   partitioned: true,
-                                  expires: new Date(0),
+                                  expires: new Date(1* 60 * 60 * 1000),
                                  }),
                                   
         res.json({ status:"Success", message:`Welcome, ${checkUser.name}!`})
@@ -210,7 +210,7 @@ app.post("/mark-attendance",verifyToken,async(req,res)=>{
 
   const today = new Date();
   const startOfDay = new Date(today.setHours(9,0,0,0));
-  const endOfDay = new Date(today.setHours(17,0,0,0));
+  const endOfDay = new Date(today.setHours(23,9,9,9));
 
 
   try {
