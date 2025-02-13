@@ -20,7 +20,7 @@ const UpdateStudent = () => {
             
             if (adminData.data.email === 'slvsai414@gmail.com'){
                 try{
-                await axios.put(`http://localhost:3000/update-student/${rollNumber}`, {
+                await axios.put(`https://cms-yikc.onrender.com/update-student/${rollNumber}`, {
                     totalFee:totalFee, 
                     remainingFee: remainingFee,
                     paidFee: paidFee
