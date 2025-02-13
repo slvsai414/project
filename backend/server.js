@@ -330,43 +330,6 @@ app.get("/profile",verifyToken, async (req, res) => {
 
 
 
-//For the Admin
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); // Save the file in the 'uploads' folder
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname); // Use timestamp for unique filename
-  },
-});
-
-const upload = multer({ storage: storage });
-
-// Upload results route
-app.post("/upload-results", upload.single("file"), async (req, res) => {
-  const { rollNumber, subject } = req.body;
-  const file = req.file;
-
-  if (!file) {
-    return res.status(400).json({ message: "File is required." });
-  }
-
-  try {
-    const newResult = new ExamResults({
-      fileUrl: file.path, // Store file path or URL
-    });
-
-    await newResult.save();
-    res.status(200).json({ message: "Exam results uploaded successfully." });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error uploading results." });
-  }
-});
-
-
-
 
 
 
