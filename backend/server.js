@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import cors from "cors";
-import path from "path";
 import { college_registration } from "./models/users.js";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import Attendance from "./models/attendance_schema.js";
 import ExamResults from "./models/examResults.js";
+
+
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-//import multer from "multer";
 
 
 
@@ -21,22 +21,20 @@ const __dirname = dirname(__filename);
 
 
 
+
 const app = express();
 app.use(express.json());
 dotenv.config();
 app.use(cookieParser())
-app.use(express.static("dist"));
-
-const PORT = process.env.PORT || 3000
 
 app.use(cors({
-  origin: "https://cms-frontend-0rrx.onrender.com",
+  origin: "http://localhost:5173",
 
   methods: ["GET", "POST", "PUT", "DELETE"],
 
   credentials: true,
 
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: ["Content-Type"]
 }));
 
 
@@ -46,7 +44,7 @@ app.use(cors({
 
 const verifyToken = (req,res,next) =>{
     const token = req.cookies.token;
-    //console.log("token: ",token)
+    console.log("token: ",token)
     if(!token){
         return res.json("The token is not available")
     }
@@ -131,12 +129,7 @@ app.post('/login', async(req,res) =>{
 
       if (isMatch){
         const token = jwt.sign({email:checkUser.email},"we-go-jim",{expiresIn:"1h"});
-        res.cookie("token",token,{httpOnly:true,
-                                  secure:true,
-                                  partitioned: true,
-                                  expires: new Date(Date.now() + 1* 60 * 60 * 1000),
-                                 }),
-                                  
+        res.cookie("token",token,{httpOnly:true, secure:true, sameSite:"Strict", expires: new Date(Date.now() + 1 * 60 * 60 * 1000)})
         res.json({ status:"Success", message:`Welcome, ${checkUser.name}!`})
       }else{
         res.json("Wrong Password")
@@ -156,17 +149,13 @@ app.post('/login', async(req,res) =>{
 
 
 app.get('/dashboard',verifyToken,async(req,res) =>{
-  console.log("Received Cookies:", req.cookies);
-  if (!req.cookies.token) {
-    return res.status(401).json("The token is not available");
-  }
-  //console.log("Dashboard route hit")
+  console.log("Dashboard route hit")
   return res.json("Success");
 
 })
 
 
-//to get the academic deta
+//to get the acadamic deta
 
 app.get('/academic-info', verifyToken, async(req, res) =>{
   return res.json("Success")
@@ -210,7 +199,7 @@ app.post("/mark-attendance",verifyToken,async(req,res)=>{
 
   const today = new Date();
   const startOfDay = new Date(today.setHours(9,0,0,0));
-  const endOfDay = new Date(today.setHours(23,9,9,9));
+  const endOfDay = new Date(today.setHours(24,0,0,0));
 
 
   try {
@@ -354,24 +343,13 @@ app.get("/profile",verifyToken, async (req, res) => {
 
 
 
-
-
 app.post("/logout", (req, res) => {
-  console.log("Clearing cookie...");
-  res.clearCookie("token", { 
-    httpOnly: true,
-    secure: NODE_ENV === "production", 
-    sameSite: NODE_ENV === "production" ? "None" : "Lax",
-    path: "/"
-  });
-  
-  console.log("Cookie after clearing:", req.cookies);
+  res.clearCookie("token", { path: "/",httpOnly: true, secure:true});
   return res.status(200).json({ message: "Logged out successfully" });
 });
 
 
 
-
-app.listen(PORT, () =>{
+app.listen(3000, () =>{
     console.log("Server is running on port 3000.");
 });
