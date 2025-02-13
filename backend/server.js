@@ -362,7 +362,6 @@ app.post("/logout", (req, res) => {
   console.log("Clearing cookie...");
   res.clearCookie("token", { path: "/",
                             httpOnly: true,
-                            sameSite: "None",
                             secure:true,
                            });
   
