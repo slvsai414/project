@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 // CORS Configuration
 app.use(cors({
-  origin: [""]
+  origin: ["https://cms-frontend-khaki-beta.vercel.app/"]
   methods:["PUT","POST","GET","DELETE"]
   credentials: true,
   allowedHeaders: ["Content-Type"]
