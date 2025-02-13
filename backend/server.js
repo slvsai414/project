@@ -25,7 +25,7 @@ app.use(cors({
 
   credentials: true,
 
-  allowedHeaders: ["Content-Type"]
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 
@@ -120,7 +120,7 @@ app.post('/login', async(req,res) =>{
 
       if (isMatch){
         const token = jwt.sign({email:checkUser.email},"we-go-jim",{expiresIn:"1h"});
-        res.cookie("token",token,{httpOnly:true, secure:true, sameSite:"None", expires: new Date(Date.now() + 1 * 60 * 60 * 1000)})
+        res.cookie("token",token,{httpOnly:true, secure:true, sameSite:"None", domain: "cms-yikc.onrender.com" ,expires: new Date(Date.now() + 1 * 60 * 60 * 1000)})
         res.json({ status:"Success", message:`Welcome, ${checkUser.name}!`})
       }else{
         res.json("Wrong Password")
