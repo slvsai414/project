@@ -133,8 +133,7 @@ app.post('/login', async(req,res) =>{
         const token = jwt.sign({email:checkUser.email},"we-go-jim",{expiresIn:"1h"});
         res.cookie("token",token,{httpOnly:true, 
                                   secure:true, 
-                                  sameSite:"None", 
-                                  domain: "cms-yikc.onrender.com" ,
+                                  sameSite:"None",
                                   partitioned: true,
                                   expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
                                   optionsSuccessStatus: 200,
@@ -360,7 +359,9 @@ app.get("/profile",verifyToken, async (req, res) => {
 
 
 app.post("/logout", (req, res) => {
+  console.log("Clearing cookie...");
   res.clearCookie("token", { path: "/", httpOnly: true,sameSite: "None", secure:true });
+  console.log("Cookie cleared")
   return res.status(200).json({ message: "Logged out successfully" });
 });
 
