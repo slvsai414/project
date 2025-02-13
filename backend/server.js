@@ -360,8 +360,8 @@ app.post("/logout", (req, res) => {
   console.log("Clearing cookie...");
   res.clearCookie("token", { 
     httpOnly: true,
-    secure: true, 
-    sameSite: "None",
+    secure: NODE_ENV === "production", 
+    sameSite: NODE_ENV === "production" ? "None" : "Lax",
     path: "/login"
   });
   
