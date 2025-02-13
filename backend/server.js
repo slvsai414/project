@@ -360,10 +360,12 @@ app.get("/profile",verifyToken, async (req, res) => {
 
 app.post("/logout", (req, res) => {
   console.log("Clearing cookie...");
-  res.clearCookie("token", { path: "/",
-                            httpOnly: true,
-                            secure: false,
-                           });
+  res.clearCookie("token", { 
+    httpOnly: true,
+    secure: true, 
+    sameSite: "None",
+    path: "/"
+  });
   
   console.log("Cookie after clearing:", req.cookies);
   return res.status(200).json({ message: "Logged out successfully" });
