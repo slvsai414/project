@@ -38,11 +38,13 @@ mongoose
 // Middleware for Token Verification
 const verifyToken = (req, res, next) => {
   const token = req.cookies.token;
+  console.log("token",token)
   if (!token) {
     return res.status(401).json("Unauthorized: No Token Provided");
   }
   try {
     const isVerify = jwt.verify(token, "we-go-jim");
+    console.log("verify: ",isVerify)
     req.user = isVerify;
     next();
   } catch (error) {
@@ -133,9 +135,10 @@ app.post("/login", async (req, res) => {
 
 
 app.get('/dashboard',verifyToken,async(req,res) =>{
+  console.log("Dashboard route hit");
   return res.json("Success");
 
-})
+});
 
 
 //to get the acadamic deta
