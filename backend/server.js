@@ -124,7 +124,8 @@ app.post('/login', async(req,res) =>{
                                   secure:true, 
                                   sameSite:"None", 
                                   domain: "cms-yikc.onrender.com" ,
-                                  partitioned: true
+                                  partitioned: true,
+                                  optionsSuccessStatus: 200
                                  }),
                                   
         res.json({ status:"Success", message:`Welcome, ${checkUser.name}!`})
