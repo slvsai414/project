@@ -362,7 +362,7 @@ app.post("/logout", (req, res) => {
     httpOnly: true,
     secure: NODE_ENV === "production", 
     sameSite: NODE_ENV === "production" ? "None" : "Lax",
-    path: "/login"
+    path: "/"
   });
   
   console.log("Cookie after clearing:", req.cookies);
