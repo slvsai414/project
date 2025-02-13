@@ -136,7 +136,8 @@ app.post('/login', async(req,res) =>{
                                   sameSite:"None", 
                                   domain: "cms-yikc.onrender.com" ,
                                   partitioned: true,
-                                  optionsSuccessStatus: 200
+                                  expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+                                  optionsSuccessStatus: 200,
                                  }),
                                   
         res.json({ status:"Success", message:`Welcome, ${checkUser.name}!`})
