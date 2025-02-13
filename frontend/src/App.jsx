@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react
 import Landing_Page from "./index1";
 import Dash from "./dashboard";
 import { Bell } from 'lucide-react';
-import Academic from "./acadamic-info";
+import Academic from "./academic-info";
 import Attendance from "./attendance";
 import Financial from "./fee";
 import Login from "./login";
