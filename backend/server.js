@@ -17,7 +17,7 @@ dotenv.config();
 app.use(cookieParser())
 
 app.use(cors({
-  origin: "https://cms-frontend-0rrx.onrender.com/",
+  origin: "https://cms-frontend-0rrx.onrender.com",
 
   methods: ["GET", "POST", "PUT", "DELETE"],
 
