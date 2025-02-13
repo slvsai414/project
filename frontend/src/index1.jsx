@@ -1,28 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import ContactUsFooter from "./footer";
+const ContactUsFooter = () => {
+    return (
+      <footer className="bg-gray-900 text-white py-6 mt-auto">
 
-function Landing_Page() {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex-grow">
-        <h1 className="text-2xl font-bold mb-4">Landing Page</h1>
-        <Link to="/dashboard" className="cursor-pointer mr-4">
-          Dashboard
-        </Link>
 
-        <br />
 
-        <Link to="/acadamic-info" className="cursor-pointer">
-          Academic Details
-        </Link>
-      </main>
+        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+          <div className="text-center md:text-left">
+            <h2 className="text-lg font-semibold">Contact Us</h2>
+            <p className="text-sm mt-1">123 Street, City, Country</p>
+            <p className="text-sm">Email: slvsai414@gmail.com</p>
+            <p className="text-sm">Phone: +123 456 7890</p>
+          </div>
 
-      <footer className="mt-auto">
-        <ContactUsFooter />
+          <div className="flex justify-content-center">
+            <p>Made With ❤ By Venkata Sai.</p>
+          </div>
+
+          <div className="mt-4 md:mt-0 text-center md:text-right">
+            <p className="text-sm">&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
-    </div>
-  );
-}
-
-export default Landing_Page;
+    );
+  };
+  
+  export default ContactUsFooter;
+  
