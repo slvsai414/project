@@ -36,7 +36,7 @@ function Navbar(){
           {/* Navigation links */}
           <div className="flex items-center space-x-6">
             <Link to ="/dashboard" className="text-white">Dashboard</Link>
-            <Link to ="/acadamic-info" className="text-white">Academic Information</Link>
+            <Link to ="/academic-info" className="text-white">Academic Information</Link>
             <Link to ="/attendance" className="text-white">Attendance</Link>
             <Link to ="/fee" className="text-white">Financial Management</Link>
           </div>
@@ -81,7 +81,7 @@ function Layout(){
       <Routes>
         <Route path = "/" element = {<Landing_Page />} />
         <Route path = '/dashboard' element = {<Dash />} />
-        <Route path = '/acadamic-info' element = {<Academic />}/>
+        <Route path = '/academic-info' element = {<Academic />}/>
         <Route path = '/attendance' element = {<Attendance />} />
         <Route path = '/fee' element = {<Financial />} />
         <Route path = '/login' element = {<Login />} />
