@@ -124,7 +124,6 @@ app.post('/login', async(req,res) =>{
                                   secure:true, 
                                   sameSite:"None", 
                                   domain: "cms-yikc.onrender.com" ,
-                                  expires: new Date(Date.now() + 1 * 60 * 60 * 1000),
                                   partitioned: true
                                  }),
                                   
