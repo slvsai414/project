@@ -362,7 +362,7 @@ app.post("/logout", (req, res) => {
   console.log("Clearing cookie...");
   res.clearCookie("token", { path: "/",
                             httpOnly: true,
-                            secure:true,
+                            secure: false,
                            });
   
   console.log("Cookie after clearing:", req.cookies);
