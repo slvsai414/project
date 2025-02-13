@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Logout from "./logout";
 import { toast } from "react-toastify";
+import UpdateStudent from "./a-d-m-i-n";
 
 
 
@@ -109,6 +110,22 @@ export default function Settings() {
             readOnly
           />
         </div>
+
+
+
+        <div className="mb-4">
+          {userData.email === "slvsai414@gmail.com"?(
+            <button className="px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-900 dark:text-white rounded-lg cursor-pointer"
+            onClick={ () => navigate("/a-d-m-i-n") }
+            > 
+            Admin 
+            </button>
+            ):(
+              <span className="text-white">Made with ❤ by Venkata Sai!</span>
+            )}
+          
+        </div>
+
 
           <button
             className="px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-900 dark:text-white rounded-lg cursor-pointer"
