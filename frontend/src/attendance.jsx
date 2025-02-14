@@ -22,7 +22,7 @@ const UserAttendance = () => {
             if (result.status !== "Success"){
                 navigate("/login")
             }else{
-                navigate("attendance")
+                navigate("/attendance")
             }
         }catch(err){
             if (err.response && err.response.data === "Invalid Token or Token Expired") {
