@@ -19,7 +19,7 @@ const UserAttendance = () => {
             const result = await axios.get("https://cms-yikc.onrender.com/attendance");
             console.log(result)
 
-            if (result.status !== "Success"){
+            if (result.status !== 200){
                 navigate("/login")
             }else{
                 navigate("/attendance")
