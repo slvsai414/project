@@ -11,7 +11,7 @@ import axios from "axios";
         const response = await axios.post("https://cms-yikc.onrender.com/logout",{},{
         withCredentials:true});
 
-        console.log("Logout response:", response);
+        //console.log("Logout response:", response);
 
         if (response.status === 200){
           navigate("/");
