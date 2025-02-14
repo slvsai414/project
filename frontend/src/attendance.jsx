@@ -16,7 +16,7 @@ const UserAttendance = () => {
     const checkAuth = async() => {
         
         try{
-            const result = await axios.get("http://localhost:3000/attendance");
+            const result = await axios.get("https://cms-yikc.onrender.com/attendance");
             console.log(result)
 
             if (result.status !== "Success"){
@@ -38,7 +38,7 @@ const UserAttendance = () => {
     useEffect(() => {
         checkAuth();
         setLoading(true)
-        axios.get("http://localhost:3000/attendance", { withCredentials: true })
+        axios.get("https://cms-yikc.onrender.com/attendance", { withCredentials: true })
             .then(response => {
                 setUser(response.data);
                 setAttendance("Absent"); // Set attendance to "Absent" by default
@@ -64,7 +64,7 @@ const UserAttendance = () => {
         })
 
         try {
-            await axios.post("http://localhost:3000/mark-attendance", {
+            await axios.post("https://cms-yikc.onrender.com/mark-attendance", {
                 userId: user._id,
                 rollNumber: user.rollNumber,
                 status: attendance
