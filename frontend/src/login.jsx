@@ -21,7 +21,7 @@ function Login() {
 
         setLoading(true);
         const result = await axios.post('https://cms-yikc.onrender.com/login',{email,password},{withCredentials:true});
-        console.log(result);
+        //console.log(result);
         if (result.data.status === "Success"){
           toast(result.data.message)
           toast.success("Login Success!",{position:"top-left"})
@@ -31,7 +31,7 @@ function Login() {
         }
       }catch(err){
         console.log(err);
-        toast.error("Err")
+        toast.error(err.message)
 
       }finally{
         setLoading(false);
