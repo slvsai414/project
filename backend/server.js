@@ -48,7 +48,7 @@ app.options("*",cors());
 
 const verifyToken = (req,res,next) =>{
     const token = req.cookies.token;
-    console.log("token: ",token)
+    //console.log("token: ",token)
     if(!token){
         return res.json("The token is not available")
     }
@@ -154,7 +154,7 @@ app.post('/login', async(req,res) =>{
 
 
 app.get('/dashboard',verifyToken,async(req,res) =>{
-  console.log("Dashboard route hit")
+  //console.log("Dashboard route hit")
   return res.json("Success");
 
 })
@@ -353,7 +353,6 @@ app.post("/logout", (req, res) => {
                             httpOnly: true,
                             secure:true,
                             sameSite: "None",
-                            
                            });
   
   return res.status(200).json({ message: "Logged out successfully" });
