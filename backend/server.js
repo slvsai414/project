@@ -353,7 +353,7 @@ app.post("/logout", (req, res) => {
                             httpOnly: true,
                             secure:true,
                             sameSite: "None",
-                            domain: "https://cms-frontend-0rrx.onrender.com"
+                            
                            });
   
   return res.status(200).json({ message: "Logged out successfully" });
