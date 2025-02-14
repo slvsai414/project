@@ -14,7 +14,7 @@ const UpdateStudent = () => {
         setLoading(true);
 
             const adminData = await axios.get("https://cms-yikc.onrender.com/profile",{withCredentials:true})
-            console.log(adminData)
+            //console.log(adminData)
 
 
             
