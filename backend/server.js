@@ -34,6 +34,8 @@ app.use(cors({
 
   credentials: true,
 
+  optionsSuccessStatus: 200,
+
   allowedHeaders: ["Content-Type"]
 }));
 
