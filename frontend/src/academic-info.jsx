@@ -13,7 +13,7 @@ const GetStudentData = () => {
 
   const checkAuth = async () => {
     try {
-      const result = await axios.get("https://cms-yikc.onrender.com/academic-info");
+      const result = await axios.get("http://localhost:3000/academic-info");
       console.log(result);
       if (result.data !== "Success") {
         // If logged in, redirect to login page
@@ -33,42 +33,37 @@ const GetStudentData = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setError(null);
-        setStudentData(null);
-        setLoading(true);
 
-        if (!rollNumber) {
-          toast.error("Please enter a roll number");
-          return;
-        }
+    checkAuth();
 
-        const response = await axios.get(`https://cms-yikc.onrender.com/student/${rollNumber}`);
-        if (response.status !== 200) {
-          throw new Error('Student not found or server error');
-        }
-        setStudentData(response.data);
-      } catch (err) {
-        if (err.message === "Request failed with status code 400") {
-          setError("User not found");
-        }
-        setStudentData(null);
-      } finally {
-        setLoading(false);
+  }, [navigate]);
+
+
+  const fetchData = async () => {
+    try {
+      setError(null);
+      setStudentData(null);
+      setLoading(true);
+
+      if (!rollNumber) {
+        toast.error("Please enter a roll number");
+        return;
       }
-    };
 
-    // Check authorization and then fetch data
-    const checkAndFetch = async () => {
-      await checkAuth();
-      if (rollNumber) {
-        fetchData();
+      const response = await axios.get(`http://localhost:3000/student/${rollNumber}`);
+      if (response.status !== 200) {
+        throw new Error('Student not found or server error');
       }
-    };
-    
-    checkAndFetch();
-  }, [rollNumber, navigate]);
+      setStudentData(response.data);
+    } catch (err) {
+      if (err.message === "Request failed with status code 400") {
+        setError("User not found");
+      }
+      setStudentData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="w-full max-w-md mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
@@ -83,6 +78,7 @@ const GetStudentData = () => {
           className="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <button
+          onClick={fetchData}
           disabled={loading}
           className={`px-4 py-2 text-white rounded-md ${loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'}`}
         >
