@@ -13,7 +13,7 @@ function Landing_Page() {
 
         <br />
 
-        <Link to="/acadamic-info" className="cursor-pointer">
+        <Link to="/academic-info" className="cursor-pointer">
           Academic Details
         </Link>
 
