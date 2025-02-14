@@ -34,7 +34,7 @@ function Registration() {
   try {
     // Send POST request to the backend
     const response = await axios.post('https://cms-yikc.onrender.com/registration',registration_data)
-    console.log(response.data);
+    //console.log(response.data);
 
     if (response.status === 201){
       toast.success("Registration Success", {
