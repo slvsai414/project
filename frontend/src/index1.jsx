@@ -37,7 +37,7 @@ function Landing_Page() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       <header className="bg-gray-700 text-white p-4 text-center">
-        <h1 className="text-4xl font-bold">Welcome to Our Platform</h1>
+        <h1 className="text-4xl font-bold">Welcome to CMS Platform</h1>
         <p className="text-lg mt-2">Your journey starts here</p>
       </header>
 
