@@ -29,7 +29,7 @@ const UserAttendance = () => {
     const handleSubmit = async () => {
         if (!user) return alert("User not found!");
 
-        console.log({
+        //console.log({
             user:user._id,
             name:user.name
         })
