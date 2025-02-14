@@ -1,23 +1,52 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 import "react-toastify/dist/ReactToastify.css";
 
 const UserAttendance = () => {
     const [user, setUser] = useState(null);
     const [attendance, setAttendance] = useState("Absent"); // Default is Absent
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
-    // Fetch Logged-in User
+    
+
+    const checkAuth = async() => {
+        
+        try{
+            const result = await axios.get("http://localhost:3000/attendance");
+            console.log(result)
+
+            if (result.status !== "Success"){
+                navigate("/login")
+            }else{
+                navigate("attendance")
+            }
+        }catch(err){
+            if (err.response && err.response.data === "Invalid Token or Token Expired") {
+                toast.error("Session expired, please log in again.");
+                navigate("/login");
+              } else {
+                toast.error(err.message);
+              }
+        }
+    };
+
+
     useEffect(() => {
+        checkAuth();
         setLoading(true)
-        axios.get("https://cms-yikc.onrender.com/attendance", { withCredentials: true })
+        axios.get("http://localhost:3000/attendance", { withCredentials: true })
             .then(response => {
                 setUser(response.data);
                 setAttendance("Absent"); // Set attendance to "Absent" by default
             })
             .catch(error => console.error("Error fetching user:", error))
             .finally(()=>setLoading(false))
+
+        
     },[]);
 
     // Handle dropdown change
@@ -29,13 +58,13 @@ const UserAttendance = () => {
     const handleSubmit = async () => {
         if (!user) return alert("User not found!");
 
-        //console.log({
+        console.log({
             user:user._id,
             name:user.name
         })
 
         try {
-            await axios.post("https://cms-yikc.onrender.com/mark-attendance", {
+            await axios.post("http://localhost:3000/mark-attendance", {
                 userId: user._id,
                 rollNumber: user.rollNumber,
                 status: attendance
@@ -52,6 +81,7 @@ const UserAttendance = () => {
         }finally{
             setLoading(false)
         }
+
     };
 
     if(loading){
