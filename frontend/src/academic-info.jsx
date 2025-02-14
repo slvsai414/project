@@ -21,7 +21,7 @@ const GetStudentData = () => {
           throw new Error('Student not found or server error');
         }
 
-        console.log(response.data)
+        //console.log(response.data)
         setStudentData(response.data);
 
       } catch (err) {
