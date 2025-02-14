@@ -13,7 +13,7 @@ const GetStudentData = () => {
 
   const checkAuth = async () => {
     try {
-      const result = await axios.get("http://localhost:3000/academic-info");
+      const result = await axios.get("https://cms-yikc.onrender.com/academic-info");
       console.log(result);
       if (result.data !== "Success") {
         // If logged in, redirect to login page
@@ -50,7 +50,7 @@ const GetStudentData = () => {
         return;
       }
 
-      const response = await axios.get(`http://localhost:3000/student/${rollNumber}`);
+      const response = await axios.get(`https://cms-yikc.onrender.com/student/${rollNumber}`);
       if (response.status !== 200) {
         throw new Error('Student not found or server error');
       }
