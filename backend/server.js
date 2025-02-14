@@ -36,8 +36,10 @@ app.use(cors({
 
   optionsSuccessStatus: 200,
 
-  allowedHeaders: ["Content-Type"]
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Set-Cookie"]
 }));
+
+app.options("*",cors());
 
 
 
@@ -91,7 +93,7 @@ app.post('/registration', async(req,res) =>{
   if(!email.includes("@")){
     return res.status(400).json("Enter the valid email")
   }
-  if (password.length<5){
+  if (password.length<6){
     return res.status(400).json("Password must be 6 letters")
   }
 
@@ -131,7 +133,8 @@ app.post('/login', async(req,res) =>{
 
       if (isMatch){
         const token = jwt.sign({email:checkUser.email},"we-go-jim",{expiresIn:"1h"});
-        res.cookie("token",token,{httpOnly:true, secure:true, sameSite:"Strict", expires: new Date(Date.now() + 1 * 60 * 60 * 1000)})
+        
+        res.cookie("token",token,{httpOnly:true, secure:true, sameSite:"None", expires: new Date(Date.now() + 1 * 60 * 60 * 1000)})
         res.status(200).json({ status: "Success", message: `Welcome, ${checkUser.name}!` });
       }else{
         res.json("Wrong Password")
@@ -201,7 +204,7 @@ app.post("/mark-attendance",verifyToken,async(req,res)=>{
 
   const today = new Date();
   const startOfDay = new Date(today.setHours(9,0,0,0));
-  const endOfDay = new Date(today.setHours(24,0,0,0));
+  const endOfDay = new Date(today.setHours(23,9,9,9));
 
 
   try {
@@ -346,7 +349,13 @@ app.get("/profile",verifyToken, async (req, res) => {
 
 
 app.post("/logout", (req, res) => {
-  res.clearCookie("token", { path: "/",httpOnly: true, secure:true});
+  res.clearCookie("token", { path: "/",
+                            httpOnly: true,
+                            secure:true,
+                            sameSite: "None",
+                            domain: "https://cms-frontend-0rrx.onrender.com"
+                           });
+  
   return res.status(200).json({ message: "Logged out successfully" });
 });
 
