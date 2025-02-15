@@ -24,6 +24,23 @@ export default function Settings() {
     rollNumber: "",
   });
 
+    useEffect(() => {
+    const lenis = new Lenis({
+      smooth :true,
+      lerp:0.2,
+      duration:1.2,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => lenis.destroy();
+
+  }, []);
+
 
   useEffect(() => {
     
