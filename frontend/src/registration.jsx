@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import logo from "./assets/learn-svgrepo-com.svg"
+
 
 function Registration() {
   const [name, setName] = useState('');
@@ -59,7 +61,7 @@ function Registration() {
           <div className="sm:mx-auto sm:w-full sm:max-w-full">
             <img
               alt="Your Company"
-              src=""
+              src= {logo}
               className="mx-auto h-10 w-auto"
             />
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
