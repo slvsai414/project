@@ -55,6 +55,10 @@ function Landing_Page() {
               Login
             </Link>
 
+            <br/>
+            <br/>
+            <br/>
+
             <Link 
               to="/registeration" 
               className="w-full sm:w-64 mx-auto px-6 py-3 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 transition-colors"
