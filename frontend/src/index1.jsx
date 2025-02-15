@@ -47,7 +47,7 @@ function Landing_Page() {
           <p className="text-gray-600 mb-6">Choose an option to proceed</p>
           
           {/* Login and Register buttons */}
-          <div className="space-y-6"> {/* Increased space between buttons */}
+          <div className="flex flex-col items-center gap-6"> {/* Increased space between buttons */}
             <Link 
               to="/login" 
               className="w-full sm:w-64 mx-auto px-6 py-3 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition-colors"
@@ -55,9 +55,9 @@ function Landing_Page() {
               Login
             </Link>
 
+{/*             <br/>
             <br/>
-            <br/>
-            <br/>
+            <br/> */}
 
             <Link 
               to="/registeration" 
