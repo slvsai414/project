@@ -60,7 +60,7 @@ function Landing_Page() {
             <br/> */}
 
             <Link 
-              to="/registeration" 
+              to="/registration" 
               className="w-full sm:w-64 mx-auto px-6 py-3 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 transition-colors"
             >
               If not a user, Register
