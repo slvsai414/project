@@ -55,7 +55,7 @@ function Financial() {
   }
 
   return (
-    <div className="min-screen flex justify-center items center">
+    <div className="min-screen flex justify-center items center mt-16">
     <div className="p-4 border rounded shadow-lg w-96">
       <h2 className="text-xl font-bold mb-2">Fee Payment</h2>
       {userData ? (
