@@ -13,7 +13,7 @@ const GetStudentData = () => {
 
   const checkAuth = async () => {
     try {
-      const result = await axios.get("https://cms-yikc.onrender.com/academic-info");
+      const result = await axios.get("https://cms-yikc.onrender.com/academic-info",{ withCredentials: true });
       console.log(result);
       if (result.status !== "Success") {
         // If logged in, redirect to login page
