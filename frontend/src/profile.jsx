@@ -133,7 +133,7 @@ export default function Settings() {
         
         </div>
       
-        <footer className="flex justify-center items-center text-white">
+        <footer className="fixed bottom-10 w-full flex justify-center items-center text-white">
           Made With ❤ By Venkata Sai
         </footer>
       
