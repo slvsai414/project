@@ -114,16 +114,13 @@ export default function Settings() {
 
 
         <div className="mb-4">
-          {userData.email === "slvsai414@gmail.com"?(
+          {userData.email === "slvsai414@gmail.com" &&(
             <button className="px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-900 dark:text-white rounded-lg cursor-pointer"
             onClick={ () => navigate("/a-d-m-i-n") }
             > 
             Admin 
             </button>
-            ):(
-              <span className="text-white">Made with ❤ by Venkata Sai!</span>
             )}
-          
         </div>
 
 
@@ -135,6 +132,11 @@ export default function Settings() {
           </button>
         
         </div>
+      
+        <footer className="fixed bottom-0 w-full flex justify-center items-center text-white">
+          Made With ❤ By Venkata Sai
+        </footer>
+      
       </div>
 
   );
