@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {  toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import logo from "./assets/learn-svgrepo-com.svg"
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -54,7 +55,7 @@ function Login() {
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
               alt="Your Company"
-              // src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+              src= {logo}
               className="mx-auto h-10 w-auto"
             />
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
