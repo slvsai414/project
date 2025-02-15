@@ -78,7 +78,7 @@ const GetStudentData = () => {
           className="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <button
-          onClick={fetchData}
+          onKeyDown={fetchData}
           disabled={loading}
           className={`px-4 py-2 text-white rounded-md ${loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'}`}
         >
