@@ -15,13 +15,14 @@ const GetStudentData = () => {
     try {
       const result = await axios.get("https://cms-yikc.onrender.com/academic-info");
       console.log(result);
-      if (result.data !== "Success") {
+      if (result.status !== "Success") {
         // If logged in, redirect to login page
         navigate("/login");
-      } else {
-        // If not logged in, navigate to academic page
-        navigate("/academic-info");
-      }
+       }
+      //else {
+      //   // If not logged in, navigate to academic page
+      //   navigate("/academic-info");
+      //}
     } catch (err) {
       if (err.response && err.response.data === "Invalid Token or Token Expired") {
         toast.error("Session expired, please log in again.");
