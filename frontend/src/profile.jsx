@@ -5,7 +5,7 @@ import axios from "axios";
 import Logout from "./logout";
 import { toast } from "react-toastify";
 import UpdateStudent from "./a-d-m-i-n";
-
+import Lenis from "@studio-freight/lenis";
 
 
 
