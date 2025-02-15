@@ -28,7 +28,7 @@ function Navbar(){
           <div className="flex items-center space-x-2">
             <div className="w-6 h-6 rounded">
               <Link to = "/dashboard">
-              <img src="learn-svgrepo-com.svg"
+              <img src="src/assets/learn-svgrepo-com.svg"
               alt="Logo"
               />
               </Link>
