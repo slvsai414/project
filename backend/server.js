@@ -36,7 +36,7 @@ app.use(cors({
 
   optionsSuccessStatus: 200,
 
-  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Set-Cookie"]
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Set-Cookie", "Cookie"]
 }));
 
 app.options("*",cors());
