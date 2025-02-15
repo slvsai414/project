@@ -14,9 +14,9 @@ const college_registration_Schema = new mongoose.Schema({
     },
 
     fee:{
-        totalFee: {type:Number,},
-        remainingFee: {type:Number,},
-        paidFee: {type:Number,},
+        totalFee: {type:Number,default: 10000},
+        remainingFee: {type:Number, default: 10000},
+        paidFee: {type:Number, default: 0},
     },
 
     name: { type: String, 
