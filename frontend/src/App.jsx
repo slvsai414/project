@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import logo from "./assets/learn-svgrepo-com.svg"
 
 function Navbar(){
   
@@ -28,7 +29,7 @@ function Navbar(){
           <div className="flex items-center space-x-2">
             <div className="w-6 h-6 rounded">
               <Link to = "/dashboard">
-              <img src="assets/learn-svgrepo-com.svg"
+              <img src={logo}
               alt="Logo"
               />
               </Link>
